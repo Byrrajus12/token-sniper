@@ -1,5 +1,5 @@
 import tweepy
-
+import re
 
 # 🔹 Twitter API Authentication
 BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAIb2xwEAAAAA956X9NCpqAlmja763db06fm7yEs%3Dcy0Qj3aivP7jH2wlXkhD29aAmxDjb7pJ4ma14Cv09eVwpCrGlD"
@@ -39,3 +39,7 @@ def get_latest_tweet(user_id):
     except Exception as e:
         print(f"Error fetching tweets: {e}")
     return None, None
+
+def extract_token_addresses(tweet):
+    """Extract addresses."""
+    return re.findall(r'\b[A-Za-z0-9]{30,}pump\b', tweet)
