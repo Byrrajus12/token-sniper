@@ -1,5 +1,7 @@
 import tweet_scraper
 import time
+import liquidity_check
+
 def monitor_tweets():
     """Continuously monitor Twitter for new posts from the user."""
     user_id = tweet_scraper.get_user_id(tweet_scraper.USERNAME)
@@ -16,5 +18,8 @@ def monitor_tweets():
             print(f"\n New Tweet: {tweet_text}")
             print(f" Tweet Link: {tweet_link}")
 
-        time.sleep(30)
-monitor_tweets()
+        time.sleep(900)
+
+liquidity_check.liquidity("GD1AR5uHytu7nHJ9zWYEEHytmLe7MaD8wg6Tzesdpump")
+
+# monitor_tweets()
