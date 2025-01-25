@@ -1,6 +1,6 @@
 import tweet_scraper
 import time
-import liquidity_check
+from backend import liquidity_check
 import os
 import pandas as pd
 
