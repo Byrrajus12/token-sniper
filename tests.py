@@ -1,25 +1,16 @@
-import tweet_scraper
-import time
-import liquidity_check
+import requests
 
-def monitor_tweets():
-    """Continuously monitor Twitter for new posts from the user."""
-    user_id = tweet_scraper.get_user_id(tweet_scraper.USERNAME)
-    if not user_id:
-        print("Failed to retrieve user ID. Exiting.")
-        return
+url = 'https://solana-mainnet.gateway.tatum.io/'
+headers = {
+  'accept': 'application/json',
+  'content-type': 'application/json',
+  'x-api-key': 't-677d28e76120e827ba1ef48b-2513dd38168e4184941d82ea'
+}
+body = {
+  'jsonrpc': '2.0',
+  'method': 'getVersion',
+  'id': 1
+}
 
-    print(f"✅ Monitoring tweets from @{tweet_scraper.USERNAME}")
-
-    while True:
-        tweet_text, tweet_link = tweet_scraper.get_latest_tweet(user_id)
-
-        if tweet_text:
-            print(f"\n New Tweet: {tweet_text}")
-            print(f" Tweet Link: {tweet_link}")
-
-        time.sleep(900)
-
-liquidity_check.liquidity("GD1AR5uHytu7nHJ9zWYEEHytmLe7MaD8wg6Tzesdpump")
-
-# monitor_tweets()
+response = requests.post(url, headers=headers, json=body)
+print(response.text)
